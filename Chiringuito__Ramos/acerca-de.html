@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia - Chiringuito Ramos | Sabinillas</title>
+    <meta name="description" content="Conoce Chiringuito Ramos. Tradición familiar, pescado fresco y espetos auténticos frente al mar en Sabinillas.">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/acerca-de.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="menu-container"></div>
+    <div id="menu-movil-container"></div>
+    <main class="acerca-de-page">
+        
+        <!-- HERO SIMPLE -->
+        <section class="hero-simple">
+            <div class="container">
+                <h1>Acerca De</h1>
+                <p>Conozca más sobre nosotros</p>
+            </div>
+        </section>
+
+        <!-- NUESTRA HISTORIA BREVE -->
+        <section class="historia-breve">
+            <div class="container">
+                <div class="historia-content">
+                    <div class="historia-text">
+                        <h2>Nuestra Historia</h2>
+                        <p>Fundado por la familia Ramos, llevamos más de 20 años sirviendo los auténticos espetos malagueños y pescado fresco frente al mar de Sabinillas.</p>
+                        <p>Dos generaciones dedicadas a mantener viva la tradición chiringuera de la costa del Sol.</p>
+                    </div>
+                    <div class="historia-img">
+                        <img src="assets/imagenes/familia-ramos.jpg" alt="Familia Ramos">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALORES ICÓNICOS -->
+        <section class="valores-rapidos">
+            <div class="container">
+                <h2>¿Por qué elegirnos?</h2>
+                <div class="valores-grid">
+                    <div class="valor-item">
+                        <i class="fas fa-fish"></i>
+                        <h3>Pescado Fresco</h3>
+                        <p>Del mar a tu mesa cada día</p>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-fire"></i>
+                        <h3>Espetos Auténticos</h3>
+                        <p>Técnica tradicional malagueña</p>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <h3>Frente al Mar</h3>
+                        <p>Las mejores vistas de Sabinillas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERÍA SIMPLE -->
+        <section class="galeria-simple">
+            <div class="container">
+                <h2>Nuestro Espacio</h2>
+                <div class="galeria-grid">
+                    <div class="galeria-item">
+                        <img src="assets/imagenes/terraza-chiringuito.jpg" alt="Terraza frente al mar">
+                        <p>Terraza con vistas al Mediterráneo</p>
+                    </div>
+                    <div class="galeria-item">
+                        <img src="assets/imagenes/espetos.jpg" alt="Espetos a la brasa">
+                        <p>Nuestros famosos espetos</p>
+                    </div>
+                    <div class="galeria-item">
+                        <img src="assets/imagenes/ambiente.jpg" alt="Ambiente del chiringuito">
+                        <p>Ambiente familiar y acogedor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HORARIO Y CONTACTO -->
+       
+
+        <!-- CTA FINAL -->
+        <section class="cta-final">
+            <div class="container">
+                <h2>¿Listo para vivir la experiencia Ramos?</h2>
+                <div class="cta-botones">
+                    <a href="reserva.html" class="btn btn-cta">Reservar Mesa</a>
+                    <a href="menu-carta.html" class="btn btn-secundario">Ver Carta</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    
+<script src="js/menu.js"></script>
+
+
+    <script>
+fetch('/includes/menu-movil.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('menu-movil-container').innerHTML = html;
+
+      // Cargar JS del menú móvil después de insertar HTML
+    const script = document.createElement('script');
+    script.src = '/js/menu-movil.js';
+    document.body.appendChild(script);
+    });
+</script>
+
+<!-- footer -->
+
+<script>
+fetch('/includes/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer-placeholder').innerHTML = data;
+
+    // Cargar CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/css/footer.css';
+    document.head.appendChild(link);
+
+    // Cargar JS
+    const script = document.createElement('script');
+    script.src = '/js/footer.js';
+    script.onload = () => {
+        // Inicializar la lógica del footer SOLO cuando el script se haya cargado
+        initFooter();
+    };
+    document.body.appendChild(script);
+  });
+</script>
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

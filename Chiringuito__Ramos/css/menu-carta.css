@@ -1,0 +1,275 @@
+/* =========================================================
+                    IMPORTACIÓN DE FUENTES
+========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500&family=Marcellus&display=swap');
+
+/* =========================================================
+                    VARIABLES DE COLOR
+========================================================= */
+:root {
+  --color-azul: #1A3D6D;
+  --color-azul-claro: #A9D6E5;
+  --color-arena: #C2B280;
+  --color-dorado: #C2B280;
+  --color-blanco: #FDF6E3;
+  --color-gris: #4C4C4C;
+}
+
+
+/* =========================================================
+                    RESET Y BASE
+========================================================= */
+body {
+margin: 0;
+padding: 0;
+font-family: 'Lato', sans-serif;
+color: var(--color-gris);
+background-color: var(--color-blanco);
+}
+/* =========================================================
+                      ENCABEZADO
+========================================================= */
+header {
+    margin-top: 100px;
+text-align: center;
+padding: 30px 20px;
+position: relative;
+margin-bottom: 20px;
+}
+
+h1 {
+font-size: 48px;
+color: var(--color-azul);
+font-family: 'Marcellus', serif;
+margin-bottom: 5px;
+}
+
+h2 {
+font-size: 22px;
+color: var(--color-dorado);
+font-family: 'Lato', sans-serif;
+letter-spacing: 1px;
+margin-bottom: 50px;
+}
+
+/* =========================================================
+                      CONTENEDOR PRINCIPAL
+========================================================= */
+.carta {
+max-width: 1100px;
+margin: 0 auto;
+padding: 20px;
+}
+
+/* =========================================================
+                      BANNER COMIDAS
+========================================================= */
+.comida-banner {
+background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80');
+background-size: cover;
+background-position: center;
+height: 250px;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+}
+
+.comida-banner::after {
+content: "";
+position: absolute;
+inset: 0;
+  background: rgba(30, 96, 145, 0.35); /* azul translúcido */
+}
+
+.comida-banner h2 {
+position: relative;
+color: #fff;
+font-size: 3rem;
+font-family: 'Marcellus', serif;
+letter-spacing: 2px;
+text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* =========================================================
+                        ESTRUCTURA DE COLUMNAS
+========================================================= */
+.fila1{
+    margin-top:20px;
+}
+.fila1, .fila2, .fila3 {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-bottom: 30px;
+}
+
+.fila1 > .categoria-menu,
+.fila2 > .categoria-menu,
+.fila3 > .categoria-menu {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* =========================================================
+                    CATEGORÍAS DEL MENÚ
+========================================================= */
+.categoria-menu h3 {
+  font-size: 22px;
+  color: var(--color-azul);
+  text-align: center;
+  border-bottom: 2px solid var(--color-arena);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-family: 'Marcellus', serif;
+}
+
+.categoria-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categoria-menu-postres ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.categoria-menu-postres .plato-item {
+  width: 100%;
+}
+
+/* =========================================================
+                        PLATOS
+========================================================= */
+.plato-item {
+  margin-bottom: 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 25, 25, 0.05);
+  padding-bottom: 5px;
+}
+
+.plato-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plato-nombre {
+  flex: 1;
+  margin-top: 3px;
+  font-weight: 600;
+  font-family: 'Marcellus', serif;
+  color: var(--color-gris);
+  font-size: 20px;
+}
+
+.plato-precio {
+  font-weight: 500;
+  color: var(--color-azul);
+}
+
+.plato-descripcion {
+  margin: 5px 0 0;
+  font-style: italic;
+  color: #5C5C5C;
+}
+
+/* =========================================================
+                    ALÉRGENOS
+========================================================= */
+.alergenos {
+  display: flex;
+  gap: 3px;
+  min-height: 10px;
+}
+
+.alergenos img {
+width: 28px;
+height: 28px;
+object-fit: contain;
+vertical-align: middle;
+}
+
+/* =========================================================
+                    BEBIDAS
+========================================================= */
+.bebidas-banner {
+background-image: url('https://images.unsplash.com/photo-1510626176961-4b37d0b86b1f?auto=format&fit=crop&w=1600&q=80');
+background-size: cover;
+background-position: center;
+height: 250px;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+}
+
+.bebidas-banner::after {
+content: "";
+position: absolute;
+inset: 0;
+background: rgba(30, 96, 145, 0.4);
+}
+
+.bebidas-banner h2 {
+position: relative;
+color: #fff;
+font-size: 3rem;
+font-family: 'Marcellus', serif;
+letter-spacing: 2px;
+text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.bebidas-content {
+  margin-bottom: 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.bebidas .menu-item {
+  flex: 1;
+  margin-top: 3px;
+  font-weight: 600;
+  font-family: 'Marcellus', serif;
+  color: var(--color-gris);
+  font-size: 20px;
+}
+
+.bebidas .menu-item h3 {
+  font-family: 'Marcellus', serif;
+  color: var(--color-azul);
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-arena);
+  padding-bottom: 0.3rem;
+}
+
+.bebidas .menu-item ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bebidas .menu-item li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: var(--color-gris);
+  border-bottom: 1px solid rgba(255, 25, 25, 0.05);
+
+}
+
+.bebidas .price {
+  font-weight: 500;
+  color: var(--color-azul);
+}
+
+#vino{
+
+  margin-bottom: 2px;
+  color:rgba(156, 5, 5, 0.568);
+
+}
+
+

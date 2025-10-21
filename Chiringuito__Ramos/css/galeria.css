@@ -1,0 +1,146 @@
+/* =========================================================
+                    RESET Y BASE
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg,#1A3D6D,#A9D6E5);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--color-gris);
+}
+
+/* =========================================================
+                    CONTENEDOR
+========================================================= */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+                    ENCABEZADO
+========================================================= */
+header {
+    margin-top: 100px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--color-azul);
+    font-family: 'Marcellus', serif;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--color-gris);
+    opacity: 0.9;
+}
+
+/* =========================================================
+                    GALERÍA
+========================================================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 200px;
+    grid-gap: 15px;
+    grid-auto-flow: dense;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid var(--color-arena);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    border-color: var(--color-dorado);
+    z-index: 10;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Variaciones de tamaño para efecto collage */
+.gallery-item:nth-child(3n) { grid-row: span 2; }
+.gallery-item:nth-child(5n) { grid-column: span 2; }
+.gallery-item:nth-child(7n) { grid-row: span 2; grid-column: span 2; }
+.gallery-item:nth-child(11n){ grid-row: span 3; }
+
+/* Efectos de filtro sutil */
+.gallery-item:nth-child(2n) img { filter: brightness(1.05) contrast(1.1); }
+.gallery-item:nth-child(4n) img { filter: sepia(0.1); }
+
+/* =========================================================
+                        RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        grid-auto-rows: 150px;
+    }
+    
+    h1 { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-auto-rows: 120px;
+        grid-gap: 10px;
+    }
+    
+    h1 { font-size: 1.8rem; }
+}
+
+/* =========================================================
+                ANIMACIÓN DE CARGA
+========================================================= */
+.gallery-item {
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Retrasos escalonados para animación */
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item:nth-child(4) { animation-delay: 0.4s; }
+.gallery-item:nth-child(5) { animation-delay: 0.5s; }
+.gallery-item:nth-child(6) { animation-delay: 0.6s; }
+.gallery-item:nth-child(7) { animation-delay: 0.7s; }
+.gallery-item:nth-child(8) { animation-delay: 0.8s; }
+.gallery-item:nth-child(9) { animation-delay: 0.9s; }
+.gallery-item:nth-child(10){ animation-delay: 1.0s; }
+.gallery-item:nth-child(11){ animation-delay: 1.1s; }
+.gallery-item:nth-child(12){ animation-delay: 1.2s; }
+.gallery-item:nth-child(13){ animation-delay: 1.3s; }
+.gallery-item:nth-child(14){ animation-delay: 1.4s; }
+.gallery-item:nth-child(15){ animation-delay: 1.5s; }

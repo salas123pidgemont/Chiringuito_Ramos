@@ -1,0 +1,506 @@
+/* ================= Sección portada ================= */
+.portada-inicio {
+  position: relative;
+  height: 100vh;
+  background: url('/assets/imagenes/upscalemedia-transformed.jpeg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+}
+.portada-inicio::before{
+
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1; 
+}
+
+.portada-inicio .overlay {
+  z-index: 2;
+  position: absolute;
+  top: 20%;
+  text-align: center;
+  color: #fff;
+  background-color: transparent;
+  padding: 100px;
+  border-radius: 20px;
+}
+
+.portada-inicio .nombre-restaurante {
+  position: relative;
+  top: -10px;
+  color:#FDF6E3;
+  font-size: 80px;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  margin: 150 0 15px;
+}
+
+.portada-inicio .direccion-contacto {
+  font-family: 'Lato',sans-serif;
+  color:#DDD6C3;
+  font-size: 25px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.portada-inicio .enlace-telefono{
+    color:#DDD6C3;
+
+  text-decoration: none;
+}
+
+.portada-inicio .boton-principal {
+  font-size: 18px;
+  padding: 12px 25px;
+  border-radius: 0px;
+  border: 3px solid #C2B280; 
+  background-color: transparent;
+  color: #FDF6E3;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.portada-inicio .boton-principal:hover {
+  background-color: #A99F7E;
+  color:#ffffff;
+    transform: scale(1.05);
+}
+/* =========================================================
+                  BOTONES
+========================================================= */
+.boton-principal {
+  display: inline-block;
+  background-color: #1A3D6D;
+  color: #FDF6E3;
+  padding: 12px 25px;
+  margin: 10px auto;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.boton-principal:hover {
+  transform: scale(1.05);
+}
+
+/* =========================================================
+                  ENLACES PRINCIPALES
+========================================================= */
+.enlaces-principales {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 0 0 40px;
+  flex-wrap: wrap;
+}
+
+.link-card {
+  position: relative;
+  flex: 1 1 300px;
+  height: 400px;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 3px solid #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-size: cover;
+  background-position: center;
+}
+
+.link-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.link-card span {
+  display: inline-block;
+  background: rgba(0,0,0,0.35);
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+/* Fondos de los enlaces */
+#galeria {
+  background: url('/assets/imagenes/colage.jpg') center/cover no-repeat;
+}
+#reserva {
+  background: url('/assets/imagenes/Foto-reservar-mesa.jpg') center/cover no-repeat;
+}
+#conocenos {
+  background: url('/assets/imagenes/portada2.jpg') center/cover no-repeat;
+}
+
+/* =========================================================
+                  SECCIONES PRINCIPALES
+========================================================= */
+.seccion-menu, .seccion-galeria {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.titulo-principal {
+  font-size: 32px;
+  color: #1A3D6D;
+  margin-bottom: 20px;
+  font-family: 'Marcellus', serif;
+}
+
+/* Botones en secciones */
+.seccion-menu .boton-principal,
+.seccion-galeria .boton-galeria,
+.bienvenida .boton-principal {
+  display: inline-block;
+  margin: 20px auto;
+}
+
+/* =========================================================
+                  MENÚ (GRID DE CATEGORÍAS)
+========================================================= */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.categoria-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A3D6D;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #EED9B7;
+  padding-bottom: 6px;
+  font-family: 'Marcellus', serif;
+}
+
+.categoria-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categoria-menu li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.plato {
+  grid-column: 1;
+  font-weight: 700;
+  color: #4C4C4C;
+}
+
+.precio {
+  grid-column: 3;
+  justify-self: end;
+  color: #1A3D6D;
+  font-weight: 700;
+}
+
+.descripcion {
+  grid-column: 1 / -1;
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+/* =========================================================
+                  SECCIÓN BIENVENIDA (AJUSTADA)
+========================================================= */
+.bienvenida {
+  background-image: url('/assets/imagenes/portada3.jpg'); /* imagen de bienvenida */
+  background-size: cover;
+  background-position: center center; /* centrado perfecto */
+  background-repeat: no-repeat;
+  height: 50vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente el contenido */
+  align-items: center;     /* centra horizontalmente el contenido */
+  text-align: center;
+  margin: 0; 
+  padding: 0; 
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bienvenida::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(26, 61, 109, 0.45); /* filtro azul marino suave */
+  z-index: 1;
+}
+
+.bienvenida .titulo-principal {
+  font-family: 'Marcellus', serif;
+  position: relative;
+  z-index: 2;
+  font-size: 70px;
+  color: #FDF6E3; 
+  margin-bottom: 20px;
+}
+
+.bienvenida .boton-principal {
+  position: relative;
+  z-index: 2;
+  font-size: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: #1A3D6D;
+  color: #FDF6E3;
+  font-weight: bold;
+  padding: 12px 25px;
+  border-radius: 8px;
+}
+
+.bienvenida .boton-principal:hover {
+  color: #FDF6E3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+}
+
+/* =========================================================
+                  RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+  .bienvenida {
+    height: 40vh;
+    padding: 20px;
+  }
+
+  .bienvenida .titulo-principal {
+    font-size: 45px;
+  }
+
+  .bienvenida .boton-principal {
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bienvenida {
+    height: 35vh;
+  }
+
+  .bienvenida .titulo-principal {
+    font-size: 32px;
+  }
+
+  .bienvenida .boton-principal {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+                  GALERÍA
+========================================================= */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.galeria-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.galeria-img:hover {
+  transform: scale(1.05);
+}
+
+/* Botones de galería */
+.seccion-galeria .boton-galeria {
+  text-decoration: none;
+  display: inline-block;
+  margin: 30px auto;
+  text-align: center;
+  padding: 12px 30px;
+  font-size: 20px;
+  color: #fff;
+  background: #1A3D6D;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.seccion-galeria .boton-galeria:hover {
+  color: #FDF6E3;
+  transform: scale(1.05);
+}
+
+/* =========================================================
+                  MODAL
+========================================================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-contenido {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 800px;
+}
+
+#caption {
+  margin: 15px auto;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.cerrar:hover {
+  color: #bbb;
+}
+
+/* =========================================================
+                  ACERCA DE / COLUMNAS
+========================================================= */
+.acerca-contenedor {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.columna {
+  flex: 1;
+  min-width: 250px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.columna.derecha img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.columna.centro h3 {
+  margin-bottom: 10px;
+  color: #1A3D6D;
+  font-size: 22px;
+}
+
+.columna.centro p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+
+
+
+
+
+/* === PORTADA MOBILE === */
+@media (max-width: 768px) {
+  .portada-inicio {
+    height: 70vh;
+    min-height: 500px;
+    padding-top: 60px;
+  }
+
+  .portada-inicio .nombre-restaurante {
+    font-size: 2.5rem;
+    top: 0;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .portada-inicio .direccion-contacto {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+
+  .portada-inicio .boton-principal {
+    font-size: 1rem;
+    padding: 12px 25px;
+    margin-top: 1rem;
+  }
+}
+
+/* === MÓVILES MUY PEQUEÑOS === */
+@media (max-width: 360px) {
+  .portada-inicio {
+    height: 80vh;
+    min-height: 450px;
+  }
+
+  .portada-inicio .nombre-restaurante {
+    font-size: 2rem;
+  }
+
+  .portada-inicio .direccion-contacto {
+    font-size: 0.9rem;
+  }
+}
+
+/* === LANDSCAPE === */
+@media (max-width: 768px) and (orientation: landscape) {
+  .portada-inicio {
+    height: 100vh;
+    min-height: 400px;
+  }
+  
+  .portada-inicio .nombre-restaurante {
+    font-size: 2rem;
+  }
+}

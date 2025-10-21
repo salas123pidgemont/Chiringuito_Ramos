@@ -1,0 +1,175 @@
+:root{
+    --header-height: 60px;
+    --menu-width: 320px;
+    --redes-height: 120px;
+    --gap-bottom: 20px;
+}
+
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; overflow-x:hidden; }
+
+.menu-movil {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--header-height);
+    background: #1A3D6D;
+    z-index: 1000;
+    padding: 10px 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-movil .logo { color:#fff; text-decoration:none; font-size:18px; font-weight:700; max-width:70%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hamburguesa { background:none; border:none; cursor:pointer; display:flex; flex-direction:column; gap:4px; padding:5px; z-index:1002; }
+.hamburguesa .linea { width:25px; height:3px; background:#FDF6E3; border-radius:2px; transition:all .3s ease; }
+.hamburguesa.open .linea:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
+.hamburguesa.open .linea:nth-child(2){ opacity:0; }
+.hamburguesa.open .linea:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+
+.navegacion-desplegable {
+    position: fixed;
+    top: 0;
+    right: calc(-1 * var(--menu-width));
+    width: var(--menu-width);
+    height: 100vh;
+background-color: rgba(253, 246, 227, 0.95); /* beige translúcido */
+    transition: right .3s ease;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: visible;
+    pointer-events: auto;
+}
+.navegacion-desplegable.active { right: 0; }
+
+.logo-menu { position:absolute; top:20px; left:20px; z-index:1002; }
+.logo-menu img{ height:40px; width:auto; display:block; }
+
+.contenedor-enlaces {
+    position: relative;
+    padding: calc(var(--header-height) + 20px) 30px 20px 30px;
+    margin: 0;
+    background: transparent;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: calc(100vh - var(--redes-height) - 20px);
+}
+.contenedor-enlaces::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(rgba(194, 178, 128, 0.4), rgba(26, 61, 109, 0.4)),
+    url('/assets/imagenes/chiringuito-caballera.jpg') center/cover;
+    z-index:-1;
+    pointer-events:none;
+}
+
+.navegacion-desplegable ul { list-style:none; width:100%; }
+.navegacion-desplegable li { border-bottom:1px solid rgba(255,255,255,0.12); }
+.navegacion-desplegable li:last-child { border-bottom:none; }
+.navegacion-desplegable a {
+    color:#A9D6E5;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:600;
+    display:block;
+    padding:15px 0;
+    text-align:left;
+    width:100%;
+    letter-spacing:.5px;
+    transition: all .15s ease;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+    .navegacion-desplegable a:hover { color:#C2B280; padding-left:10px; }
+
+.redes-socialess {
+    padding: 14px 20px;
+    margin: 0;
+    height: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: transparent;
+    z-index: 1002;
+}
+
+.redes-socialess i.fa-instagram {
+font-size: 24px;
+color: #E1306C; /* color oficial Instagram */
+transition: transform 0.3s, color 0.3s;
+}
+
+.redes-socialess i.fa-facebook {
+font-size: 24px;
+color: #1877F2; /* color oficial Facebook */
+transition: transform 0.3s, color 0.3s;
+}
+
+.redes-socialess i.fa-map-marker-alt{
+
+font-size: 24px;
+color: #A8D18D; /* color oficial Facebook */
+transition: transform 0.3s, color 0.3s;
+
+}
+.titulo-redes { 
+    color:white; 
+    font-size:16px; 
+    font-weight:600; 
+    margin-bottom:10px; 
+    text-shadow:1px 1px 2px rgba(0,0,0,0.5); }
+.contenedor-iconos { 
+    display:flex; 
+    gap:18px; 
+    align-items:center; 
+    justify-content:center; 
+}
+.icono-redes { 
+    font-size:24px; 
+    text-decoration:none; 
+    transition:all .3s; 
+    padding:6px; 
+    text-shadow:1px 1px 2px rgba(0,0,0,0.5); 
+    color:#fff; }
+.icono-redes:hover{ 
+    color:#d4af37; 
+    transform:translateY(-2px); 
+}
+.tripadvisor-icon{ 
+    width:26px; 
+    height:auto; 
+    display:block; }
+
+.overlay-menu {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    z-index:999; display:none;
+}
+.overlay-menu.active{ display:block; }
+
+.direccion-chiringuito {
+  font-size: 12px;       /* tamaño pequeño */
+  color: #1A3D6D;        /* mismo color que los iconos */
+  text-align: center;    /* centrado */
+  margin-top: 10px;      /* separación con los iconos */
+  line-height: 1.4;      /* legible en varias líneas */
+  word-wrap: break-word; /* que no se salga del contenedor */
+}
+
+@media (max-width:768px){
+    .menu-movil{ display:flex; }
+    body.menu-abierto { position:fixed; overflow:hidden; width:100%; height:100%; touch-action:none; overscroll-behavior:none; }
+    .menu-navegacion, .menu-desktop, #menu-container { display:none !important; }
+}
+@media (min-width:769px){
+    .menu-movil, #menu-movil-container { display:none !important; }
+}

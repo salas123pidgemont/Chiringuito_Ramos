@@ -1,0 +1,24 @@
+/* ====================== GLOBAL.CSS ====================== */
+/* === Reset básico de navegador === */
+html, body {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+*, *::before, *::after {
+box-sizing: inherit;
+}
+
+/* === Configuración general del sitio === */
+body {
+font-family: 'Lato', sans-serif;
+color: #333;
+overflow-x: hidden;
+background-color: #fff;
+}
+
+h1, h2, h3 {
+font-family: 'Marcellus', serif;
+margin: 0;
+}

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva - Restaurante Delicias</title>
+    <link rel="stylesheet" href="css/reserva.css">
+<link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body class="reserva">
+    <div id="menu-container"></div>
+<div id="menu-movil-container"></div>
+    <main>
+        <div class="container">
+            <div class="page-title">
+                <h1>Reserva una Mesa</h1>
+                <p>Complete el formulario para garantizar su experiencia culinaria</p>
+            </div>
+            
+            <div class="reservation-form">
+                <form id="reservationForm">
+                    <div class="info-message">
+                        <p><strong>Importante:</strong> Solo aceptamos reservas con al menos 7 días de antelación.</p>
+                    </div>
+                    
+                    <div class="warning-message" id="largeGroupWarning">
+                        <p><strong>Para grupos grandes:</strong> Si su reserva es para más de 15 personas, por favor llame al <strong>+34 123 456 789</strong>.</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre completo *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="people">Número de personas *</label>
+                            <select id="people" name="people" required>
+                                <option value="">Seleccione...</option>
+                                <option value="1">1 persona</option>
+                                <option value="2">2 personas</option>
+                                <option value="3">3 personas</option>
+                                <option value="4">4 personas</option>
+                                <option value="5">5 personas</option>
+                                <option value="6">6 personas</option>
+                                <option value="7">7 personas</option>
+                                <option value="8">8 personas</option>
+                                <option value="9">9 personas</option>
+                                <option value="10">10 personas</option>
+                                <option value="11">11 personas</option>
+                                <option value="12">12 personas</option>
+                                <option value="13">13 personas</option>
+                                <option value="14">14 personas</option>
+                                <option value="15">15 personas</option>
+                                <option value="16">Más de 15 (llamar)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Fecha deseada *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Hora deseada *</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Preferencia de ubicación</label>
+                        <div class="location-options">
+                            <div class="location-option" id="insideOption">
+                                <input type="radio" id="inside" name="location" value="Dentro">
+                                <label for="inside">🌆 Dentro</label>
+                            </div>
+                            <div class="location-option" id="terraceOption">
+                                <input type="radio" id="terrace" name="location" value="Terraza">
+                                <label for="terrace">🌅 Terraza</label>
+                            </div>
+                            <div class="location-option" id="beachOption">
+                                <input type="radio" id="beach" name="location" value="Playa">
+                                <label for="beach">🏖️ Playa</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje adicional</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Celebraciones, alergias, requerimientos especiales..."></textarea>
+                    </div>
+
+                    <div class="loading" id="loading">
+                        <p>📨 Enviando reserva...</p>
+                    </div>
+                    
+                    <button type="submit" class="btn" id="submitBtn">✅ Realizar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0FdqIzBH5-G09brRt6MMEUzU4kBws-C24P0dJsJ1ifnGmp6eux0C6ilZIQ8JvtMTBpw/exec';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar fecha mínima (7 días desde hoy)
+            const dateInput = document.getElementById('date');
+            const today = new Date();
+            const minDate = new Date();
+            minDate.setDate(today.getDate() + 7);
+            
+            const formatDate = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            
+            dateInput.min = formatDate(minDate);
+            
+
+// 🔒 BLOQUEAR MARTES - Evento para validar selección
+    dateInput.addEventListener('input', function() {
+        const selectedDate = new Date(this.value);
+        const dayOfWeek = selectedDate.getDay(); // 0=Domingo, 1=Lunes, 2=Martes...
+        
+        if (dayOfWeek === 2) { // 2 = Martes
+            alert('❌ Lo sentimos, los martes estamos cerrados. Por favor, seleccione otro día.');
+            this.value = ''; // Limpiar selección
+        }
+    });
+
+
+
+            // Elementos del DOM
+            const peopleSelect = document.getElementById('people');
+            const largeGroupWarning = document.getElementById('largeGroupWarning');
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const locationOptions = document.querySelectorAll('.location-option');
+            
+            // Mostrar advertencia para grupos grandes
+            peopleSelect.addEventListener('change', function() {
+                if (this.value === '16') {
+                    largeGroupWarning.classList.add('show');
+                    submitBtn.disabled = true;
+                } else {
+                    largeGroupWarning.classList.remove('show');
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            // Selección de ubicación
+            locationOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    locationOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                });
+            });
+            
+            // Envío del formulario - VERSIÓN SIMPLIFICADA Y ROBUSTA
+            const reservationForm = document.getElementById('reservationForm');
+            
+            reservationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                console.log('🔸 Iniciando envío de formulario...');
+                
+                // Validaciones básicas
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const people = document.getElementById('people').value;
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+                
+                if (!name || !email || !phone || !people || !date || !time) {
+                    alert('❌ Por favor, complete todos los campos obligatorios.');
+                    return;
+                }
+                
+                const selectedDate = new Date(date);
+                const today = new Date();
+                const daysDifference = Math.floor((selectedDate - today) / (1000 * 60 * 60 * 24));
+                
+                if (daysDifference < 7) {
+                    alert('❌ Solo aceptamos reservas con al menos 7 días de antelación.');
+                    return;
+                }
+                
+                // Mostrar loading
+                submitBtn.disabled = true;
+                loading.classList.add('show');
+                console.log('🔸 Loading activado');
+                
+                // Recoger datos del formulario
+                const formData = {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    people: people,
+                    date: date,
+                    time: time,
+                    location: document.querySelector('input[name="location"]:checked')?.value || '',
+                    message: document.getElementById('message').value
+                };
+                
+                console.log('🔸 Datos a enviar:', formData);
+                console.log('🔸 URL destino:', GOOGLE_SCRIPT_URL);
+                
+                // 🔄 ENVÍO MEJORADO CON TIMEOUT
+                enviarReservaConTimeout(formData, 15000) // 15 segundos de timeout
+                    .then(result => {
+                        console.log('✅ Éxito:', result);
+                        loading.classList.remove('show');
+                        submitBtn.disabled = false;
+                        
+                        if (result.success) {
+                            alert('✅ ¡Reserva enviada con éxito! Te contactaremos pronto.');
+                            reservationForm.reset();
+                            locationOptions.forEach(opt => opt.classList.remove('selected'));
+                        } else {
+                            alert('❌ Error: ' + (result.error || 'Error desconocido'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('❌ Error en envío:', error);
+                        loading.classList.remove('show');
+                        submitBtn.disabled = false;
+                        alert('❌ Error al enviar: ' + error.message + '\n\nPor favor, llámenos directamente al +34 123 456 789');
+                    });
+            });
+            
+            // 🔄 FUNCIÓN MEJORADA DE ENVÍO CON TIMEOUT
+            function enviarReservaConTimeout(formData, timeoutMs = 15000) {
+                return new Promise((resolve, reject) => {
+                    const xhr = new XMLHttpRequest();
+                    let timedOut = false;
+                    
+                    // Configurar timeout
+                    const timeoutId = setTimeout(() => {
+                        timedOut = true;
+                        xhr.abort();
+                        reject(new Error('Tiempo de espera agotado. El servidor no respondió.'));
+                    }, timeoutMs);
+                    
+                    // Convertir datos a parámetros URL
+                    const params = new URLSearchParams();
+                    for (const key in formData) {
+                        if (formData[key] !== undefined && formData[key] !== null) {
+                            params.append(key, formData[key]);
+                        }
+                    }
+                    
+                    xhr.open('POST', GOOGLE_SCRIPT_URL, true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    
+                    xhr.onload = function() {
+                        clearTimeout(timeoutId);
+                        if (timedOut) return;
+                        
+                        console.log('🔸 Respuesta recibida. Status:', xhr.status);
+                        console.log('🔸 Respuesta texto:', xhr.responseText);
+                        
+                        if (xhr.status === 200) {
+                            try {
+                                const result = JSON.parse(xhr.responseText);
+                                resolve(result);
+                            } catch (e) {
+                                console.warn('⚠️ Respuesta no es JSON válido, pero status es 200');
+                                resolve({ 
+                                    success: true, 
+                                    message: 'Reserva enviada (respuesta no JSON)' 
+                                });
+                            }
+                        } else {
+                            reject(new Error(`Error ${xhr.status}: ${xhr.statusText}`));
+                        }
+                    };
+                    
+                    xhr.onerror = function() {
+                        clearTimeout(timeoutId);
+                        if (timedOut) return;
+                        console.error('🔸 Error de conexión XHR');
+                        reject(new Error('Error de conexión con el servidor'));
+                    };
+                    
+                    xhr.ontimeout = function() {
+                        console.error('🔸 Timeout XHR');
+                        reject(new Error('Tiempo de espera agotado'));
+                    };
+                    
+                    // Estados de la conexión para debug
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 1) console.log('🔸 OPENED: conexión abierta');
+                        if (xhr.readyState === 2) console.log('🔸 HEADERS_RECEIVED: headers recibidos');
+                        if (xhr.readyState === 3) console.log('🔸 LOADING: cargando respuesta');
+                        if (xhr.readyState === 4) console.log('🔸 DONE: solicitud completada');
+                    };
+                    
+                    console.log('🔸 Enviando solicitud...');
+                    xhr.send(params.toString());
+                });
+            }
+            
+            // 🔧 FUNCIÓN PARA PROBAR LA CONEXIÓN
+            window.probarConexion = function() {
+                console.log('🔧 Probando conexión...');
+                const testData = {
+                    name: 'Test Connection',
+                    email: 'test@test.com',
+                    phone: '123456789',
+                    people: '2',
+                    date: '2024-01-01',
+                    time: '12:00',
+                    location: 'Dentro',
+                    message: 'Esta es una prueba de conexión'
+                };
+                
+                enviarReservaConTimeout(testData, 10000)
+                    .then(result => console.log('✅ Prueba exitosa:', result))
+                    .catch(error => console.error('❌ Prueba fallida:', error));
+            };
+        });
+    </script>
+
+    <script src="js/menu.js"></script>
+
+<script>
+fetch('/includes/menu-movil.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('menu-movil-container').innerHTML = html;
+
+      // Cargar JS del menú móvil después de insertar HTML
+    const script = document.createElement('script');
+    script.src = '/js/menu-movil.js';
+    document.body.appendChild(script);
+    });
+</script>
+
+
+
+<script>
+fetch('/includes/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer-placeholder').innerHTML = data;
+
+    // Cargar CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/css/footer.css';
+    document.head.appendChild(link);
+
+    // Cargar JS
+    const script = document.createElement('script');
+    script.src = '/js/footer.js';
+    script.onload = () => {
+        // Inicializar la lógica del footer SOLO cuando el script se haya cargado
+        initFooter();
+    };
+    document.body.appendChild(script);
+  });
+</script>
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

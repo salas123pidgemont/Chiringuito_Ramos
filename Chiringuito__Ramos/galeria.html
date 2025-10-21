@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiringuito Playero - Galería Collage</title>
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/galeria.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    </head>
+
+
+<body>
+<div id="menu-container"></div>
+<div id="menu-movil-container"></div>
+
+    <div class="container">
+        <header>
+            <h1>Chiringuito Ramos</h1>
+            <p class="subtitle">Donde el mar se encuentra con el sabor</p>
+        </header>
+        
+        <div class="gallery">
+            <!-- Comida y platos principales -->
+            <div class="gallery-item">
+                <img src="assets/imagenes/ernestoo.jpg" alt="Pescado a la sal">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/imagenes/ernestoo.jpg" alt="Paella marinera">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Espetos de sardinas">
+            </div>
+            
+            <!-- Bebidas y cócteles -->
+            <div class="gallery-item">
+                <img src="assets/imagenes/ernestoo.jpg" alt="Tinto de verano">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cócteles tropicales">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cerveza fresca">
+            </div>
+            
+            <!-- Ambiente y vistas -->
+            <div class="gallery-item">
+                <img src="assets/imagenes/ernestoo.jpg" alt="Almuerzo junto al mar">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cena con luces">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Vista panorámica">
+            </div>
+            
+            <!-- Atardeceres y detalles -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Atardecer mágico">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Decoración con redes">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Equipo en acción">
+            </div>
+            
+            <!-- Más fotos del chiringuito -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Acceso directo a la playa">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1572715376701-98568319fd0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mesa con detalles">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Eventos especiales">
+            </div>
+            
+            <!-- Fotos adicionales para completar el collage -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Hamburguesa gourmet">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Desayuno playero">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Postres caseros">
+            </div>
+        </div>
+    </div>
+<script src="js/menu.js"></script>
+
+    <script>
+        // Efecto de carga progresiva para mejorar el rendimiento
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item img');
+            
+            galleryItems.forEach(img => {
+                // Simular carga diferida (en un caso real usaríamos loading="lazy")
+                img.addEventListener('load', function() {
+                    this.style.opacity = 1;
+                });
+            });
+            
+            // Efecto parallax sutil en el header
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const header = document.querySelector('header');
+                header.style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
+            });
+        });
+    </script>
+        <script>
+fetch('/includes/menu-movil.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('menu-movil-container').innerHTML = html;
+
+      // Cargar JS del menú móvil después de insertar HTML
+    const script = document.createElement('script');
+    script.src = '/js/menu-movil.js';
+    document.body.appendChild(script);
+    });
+</script>
+
+<!-- footer -->
+
+<script>
+fetch('/includes/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer-placeholder').innerHTML = data;
+
+    // Cargar CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/css/footer.css';
+    document.head.appendChild(link);
+
+    // Cargar JS
+    const script = document.createElement('script');
+    script.src = '/js/footer.js';
+    script.onload = () => {
+        // Inicializar la lógica del footer SOLO cuando el script se haya cargado
+        initFooter();
+    };
+    document.body.appendChild(script);
+  });
+</script>
+<div id="footer-placeholder"></div>
+
+</body>
+</html>
